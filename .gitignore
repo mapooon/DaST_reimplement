@@ -1,0 +1,7 @@
+*.pth
+*.json
+*.pyc
+
+/data/*
+/output/*
+

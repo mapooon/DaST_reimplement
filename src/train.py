@@ -132,21 +132,21 @@ test_loader=torch.utils.data.DataLoader(
     mnist_dataset,batch_size=batch_size,shuffle=False
 )
 
-
+cnt=0
 for data,target in test_loader:
     data,target=data.to(device),target.to(device)
     # data.requires_grad=True
 
     # output_sub=sub_models[phase](data)
     # acc_sub=(output_sub.argmax(1)==target)
-
+    cnt+=len(target)
     with torch.no_grad():
         output_att=attacked_model(data)
     acc_att=(output_att.argmax(1)==target).sum().item()/len(target)
     print(acc_att)
-
+# print(cnt,len(mnist_dataset))
 #     print(F.softmax(output_att,dim=1)[0].cpu().data.numpy().tolist())
-#     sys.exit()
+# sys.exit()
 
 
 for phase in ['P','L']:
